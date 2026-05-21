@@ -6,6 +6,7 @@ using CRMConnect.Models;
 
 namespace CRMConnect.Pages;
 
+[AdminAuthorize]
 public class CustomersModel : PageModel
 {
     public List<Customer> Customers { get; set; } = new();
@@ -17,7 +18,7 @@ public class CustomersModel : PageModel
         LoadCustomers();
     }
 
-    public IActionResult OnPost(string name, string email, string phone, string address)
+    public IActionResult OnPost(string name, string email, string phone, string address, string policyType)
     {
         if (string.IsNullOrEmpty(name))
         {
@@ -29,14 +30,15 @@ public class CustomersModel : PageModel
 
         try
         {
-            string query = @"INSERT INTO Customers (CustomerID, Name, Email, Phone, Address) 
-                            VALUES (CustomerSeq.NEXTVAL, :Name, :Email, :Phone, :Address)";
+            string query = @"INSERT INTO Customers (CustomerID, Name, Email, Phone, Address, PolicyType, LoginPassword, CreatedDate) 
+                            VALUES (CustomerSeq.NEXTVAL, :Name, :Email, :Phone, :Address, :PolicyType, 'customer123', SYSDATE)";
             
             OracleParameter[] parameters = {
                 new OracleParameter("Name", name),
                 new OracleParameter("Email", email ?? ""),
                 new OracleParameter("Phone", phone ?? ""),
-                new OracleParameter("Address", address ?? "")
+                new OracleParameter("Address", address ?? ""),
+                new OracleParameter("PolicyType", policyType ?? "Life Protection")
             };
             
             DatabaseHelper.ExecuteNonQuery(query, parameters);

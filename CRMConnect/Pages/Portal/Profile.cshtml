@@ -1,0 +1,44 @@
+@page
+@model CRMConnect.Pages.Portal.ProfileModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<h2 class="slic-page-title">My Profile</h2>
+<p class="slic-page-subtitle">Your registered customer information</p>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="slic-card">
+            <div class="slic-card-body text-center p-4">
+                <div class="profile-avatar">@(Model.Customer.Name.Length > 0 ? Model.Customer.Name[0] : '?')</div>
+                <h3 class="fw-bold" style="color: var(--slic-teal);">@Model.Customer.Name</h3>
+                <span class="badge bg-warning text-dark mb-4">@Model.Customer.PolicyType</span>
+            </div>
+            <div class="slic-card-body border-top">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label class="text-muted small">Email</label>
+                        <div class="fw-semibold">@Model.Customer.Email</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="text-muted small">Phone</label>
+                        <div class="fw-semibold">@Model.Customer.Phone</div>
+                    </div>
+                    <div class="col-12">
+                        <label class="text-muted small">Address</label>
+                        <div class="fw-semibold">@(string.IsNullOrEmpty(Model.Customer.Address) ? "—" : Model.Customer.Address)</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="text-muted small">Customer ID</label>
+                        <div class="fw-semibold">#@Model.Customer.CustomerID</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="text-muted small">Member Since</label>
+                        <div class="fw-semibold">Active Customer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

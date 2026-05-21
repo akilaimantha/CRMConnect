@@ -6,6 +6,7 @@ using CRMConnect.Models;
 
 namespace CRMConnect.Pages;
 
+[AdminAuthorize]
 public class SalesModel : PageModel
 {
     public List<SalesActivity> SalesActivities { get; set; } = new();

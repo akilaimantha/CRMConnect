@@ -9,8 +9,20 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\USER\\Documents\\GitHub\\CRMConnect\\CRMConnect\\wwwroot\\css\\slic-theme.css",
+      "PackagePath": "staticwebassets\\css\\slic-theme.css"
+    },
+    {
       "Id": "C:\\Users\\USER\\Documents\\GitHub\\CRMConnect\\CRMConnect\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\USER\\Documents\\GitHub\\CRMConnect\\CRMConnect\\wwwroot\\images\\slic-logo.svg",
+      "PackagePath": "staticwebassets\\images\\slic-logo.svg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\Documents\\GitHub\\CRMConnect\\CRMConnect\\wwwroot\\js\\crm.js",
+      "PackagePath": "staticwebassets\\js\\crm.js"
     },
     {
       "Id": "C:\\Users\\USER\\Documents\\GitHub\\CRMConnect\\CRMConnect\\wwwroot\\js\\site.js",

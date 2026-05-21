@@ -49,14 +49,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.StaticFiles": {
-              "target": "Package",
-              "version": "[2.3.10, )"
-            },
-            "Oracle.ManagedDataAccess": {
-              "target": "Package",
-              "version": "[23.26.200, )"
-            },
             "Oracle.ManagedDataAccess.Core": {
               "target": "Package",
               "version": "[23.26.200, )"

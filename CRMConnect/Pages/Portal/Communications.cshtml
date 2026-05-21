@@ -1,0 +1,31 @@
+@page
+@model CRMConnect.Pages.Portal.CommunicationsModel
+@{
+    ViewData["Title"] = "My Messages";
+}
+
+<h2 class="slic-page-title">Communication History</h2>
+<p class="slic-page-subtitle">All recorded interactions with your insurance advisor</p>
+
+<div class="slic-card">
+    <div class="slic-card-header">Your Timeline</div>
+    <div class="slic-card-body">
+        @if (Model.Communications.Any())
+        {
+            foreach (var comm in Model.Communications)
+            {
+                <div class="activity-item">
+                    <div class="d-flex justify-content-between flex-wrap gap-2">
+                        <span class="comm-type comm-type-@comm.TypeClass">@comm.CommType</span>
+                        <span class="text-muted small">@comm.CommunicationDate.ToString("dd MMM yyyy · h:mm tt")</span>
+                    </div>
+                    <p class="mb-0 mt-2">@comm.Notes</p>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-muted text-center py-4">No communication records found for your account.</p>
+        }
+    </div>
+</div>

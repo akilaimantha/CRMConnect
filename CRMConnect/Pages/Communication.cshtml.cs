@@ -6,6 +6,7 @@ using CRMConnect.Models;
 
 namespace CRMConnect.Pages;
 
+[AdminAuthorize]
 public class CommunicationModel : PageModel
 {
     public List<CommunicationRecord> Communications { get; set; } = new();

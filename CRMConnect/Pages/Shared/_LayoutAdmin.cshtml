@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CRMConnect Admin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/slic-theme.css" asp-append-version="true" />
+</head>
+<body class="slic-body d-flex flex-column" data-portal="admin">
+    <header class="slic-header">
+        <div class="slic-header-pattern"></div>
+        <nav class="navbar navbar-expand-lg slic-navbar">
+            <div class="container">
+                <div class="d-flex flex-column flex-lg-row w-100 align-items-lg-center justify-content-between gap-2">
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <a class="slic-brand" href="/Admin">
+                            <img src="~/images/slic-logo.svg" alt="SLIC" />
+                            <div class="slic-brand-text">
+                                <h1>CRMConnect</h1>
+                                <span>Sri Lanka Insurance · Admin Portal</span>
+                            </div>
+                        </a>
+                        <span class="user-badge d-none d-md-inline">
+                            @(Context.Session.GetString("DisplayName") ?? "Admin")
+                        </span>
+                    </div>
+                    <div class="d-none d-lg-flex slic-nav-top align-items-center">
+                        <a href="#">About Us</a>
+                        <a href="#">Contact Us</a>
+                        <span class="slic-lang-badge">En</span>
+                    </div>
+                </div>
+                <button class="navbar-toggler navbar-dark border-0 text-white mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse mt-2" id="adminNav">
+                    <ul class="navbar-nav slic-nav-links ms-lg-auto align-items-lg-center">
+                        <li class="nav-item"><a class="nav-link" href="/Admin">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Customers">Customers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Sales">Sales</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Tasks">Tasks</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Communication">Communication</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Admin/Users">Users</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Admin/Settings">Settings</a></li>
+                        <li class="nav-item ms-lg-2">
+                            <a class="btn-slic-gold btn-sm" href="/Logout">Logout <span class="btn-arrow-icon">→</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="slic-main flex-grow-1">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="slic-footer">
+        <div>&copy; @DateTime.Now.Year Sri Lanka Insurance Corporation — CRMConnect Admin</div>
+        <small>ASP.NET Core · Oracle Database · HTML · CSS · JavaScript</small>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/crm.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="SLIC Sri Lanka Insurance">
+  <defs>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a9aa5"/>
+      <stop offset="100%" style="stop-color:#15848D"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="14" fill="url(#tealGrad)"/>
+  <rect y="0" width="120" height="72" rx="14" fill="#15848D"/>
+  <rect y="72" width="120" height="48" fill="#FFD700"/>
+  <text x="14" y="38" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#fff">SLIC</text>
+  <circle cx="88" cy="28" r="10" fill="#FFD700" stroke="#fff" stroke-width="1.5"/>
+  <text x="14" y="54" font-family="Segoe UI, Arial, sans-serif" font-size="7" fill="rgba(255,255,255,0.9)">Sri Lanka Insurance</text>
+  <text x="60" y="102" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#fff" letter-spacing="2">LIFE</text>
+</svg>

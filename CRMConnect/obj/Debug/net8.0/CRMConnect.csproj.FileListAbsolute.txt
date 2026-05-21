@@ -6,16 +6,9 @@ C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\CRMConnect
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\CRMConnect.runtimeconfig.json
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\CRMConnect.dll
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\CRMConnect.pdb
-C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
-C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
-C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
-C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\Microsoft.Extensions.WebEncoders.dll
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\Oracle.ManagedDataAccess.dll
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\System.Collections.Immutable.dll
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\System.Formats.Asn1.dll
-C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\obj\Debug\net8.0\CRMConnect.csproj.AssemblyReference.cache
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\obj\Debug\net8.0\CRMConnect.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\obj\Debug\net8.0\CRMConnect.AssemblyInfoInputs.cache

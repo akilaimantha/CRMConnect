@@ -6,6 +6,7 @@ using CRMConnect.Models;
 
 namespace CRMConnect.Pages;
 
+[AdminAuthorize]
 public class TasksModel : PageModel
 {
     public List<TaskItem> Tasks { get; set; } = new();
