@@ -9,25 +9,21 @@ public class IndexModel : PageModel
     public int TotalCustomers { get; set; }
     public int PendingTasks { get; set; }
     public int TotalSales { get; set; }
-    public List<TaskItem> RecentTasks { get; set; } = new();
+    public List<DashboardTaskItem> RecentTasks { get; set; } = new();
 
     public void OnGet()
     {
         try
         {
-            // Get total customers
             var dt = DatabaseHelper.ExecuteQuery("SELECT COUNT(*) FROM Customers");
             TotalCustomers = Convert.ToInt32(dt.Rows[0][0]);
 
-            // Get pending tasks
             dt = DatabaseHelper.ExecuteQuery("SELECT COUNT(*) FROM Tasks WHERE Status = 'Pending'");
             PendingTasks = Convert.ToInt32(dt.Rows[0][0]);
 
-            // Get total sales activities
             dt = DatabaseHelper.ExecuteQuery("SELECT COUNT(*) FROM SalesActivities");
             TotalSales = Convert.ToInt32(dt.Rows[0][0]);
 
-            // Get recent tasks (5 most urgent)
             string query = @"SELECT TaskDescription, AssignedTo, DueDate, Status 
                             FROM Tasks 
                             WHERE ROWNUM <= 5 
@@ -36,7 +32,7 @@ public class IndexModel : PageModel
             
             foreach (DataRow row in dt.Rows)
             {
-                RecentTasks.Add(new TaskItem
+                RecentTasks.Add(new DashboardTaskItem
                 {
                     TaskDescription = row["TaskDescription"]?.ToString() ?? "",
                     AssignedTo = row["AssignedTo"]?.ToString() ?? "",
@@ -47,7 +43,6 @@ public class IndexModel : PageModel
         }
         catch (Exception ex)
         {
-            // Handle database connection issues gracefully
             TotalCustomers = 0;
             PendingTasks = 0;
             TotalSales = 0;
@@ -56,7 +51,8 @@ public class IndexModel : PageModel
     }
 }
 
-public class TaskItem
+// Different name to avoid conflict
+public class DashboardTaskItem
 {
     public string TaskDescription { get; set; } = "";
     public string AssignedTo { get; set; } = "";

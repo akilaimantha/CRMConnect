@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CRMConnect")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7172cdeb18e20aaa2d4ad1cedf9709e7d049d69")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6e06a822b2d38188ae44fc5039a70209d329c61")]
 [assembly: System.Reflection.AssemblyProductAttribute("CRMConnect")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CRMConnect")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
