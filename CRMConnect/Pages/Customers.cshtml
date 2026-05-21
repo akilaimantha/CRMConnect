@@ -1,0 +1,96 @@
+@page
+@model CRMConnect.Pages.CustomersModel
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="container">
+    <h1 class="mb-4">👥 Customer Management</h1>
+    
+    <!-- Add Customer Form - HTML + CSS -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">➕ Add New Customer</h4>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert alert-@(Model.IsSuccess ? "success" : "danger") alert-dismissible fade show" role="alert">
+                    @Model.Message
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" name="Name" class="form-control" required />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="Email" class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" name="Phone" class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Address</label>
+                        <textarea name="Address" class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary" onclick="return validateCustomerForm()">➕ Add Customer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Customer List -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">📋 Customer List</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var customer in Model.Customers)
+                    {
+                        <tr>
+                            <td>@customer.Name</td>
+                            <td>@customer.Email</td>
+                            <td>@customer.Phone</td>
+                            <td>
+                                <form method="post" asp-page-handler="Delete" style="display:inline">
+                                    <input type="hidden" name="id" value="@customer.CustomerID" />
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this customer?')">🗑️ Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Form Validation -->
+<script type="text/javascript">
+    function validateCustomerForm() {
+        var name = document.querySelector('input[name="Name"]').value;
+        if (!name || name.trim() === '') {
+            alert('❌ Please enter customer name!');
+            return false;
+        }
+        return true;
+    }
+</script>

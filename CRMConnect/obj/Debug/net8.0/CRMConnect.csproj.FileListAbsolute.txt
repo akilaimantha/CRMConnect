@@ -41,3 +41,13 @@ C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\obj\Debug\net8.0\refint\CRM
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\obj\Debug\net8.0\CRMConnect.pdb
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\obj\Debug\net8.0\CRMConnect.genruntimeconfig.cache
 C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\obj\Debug\net8.0\ref\CRMConnect.dll
+C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\System.DirectoryServices.Protocols.dll
+C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\runtimes\linux\lib\net8.0\System.DirectoryServices.Protocols.dll
+C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\runtimes\osx\lib\net8.0\System.DirectoryServices.Protocols.dll
+C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.DirectoryServices.Protocols.dll
+C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
