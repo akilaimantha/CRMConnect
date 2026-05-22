@@ -4,73 +4,68 @@
     ViewData["Title"] = "User Management";
 }
 
-<h2 class="slic-page-title">User Management</h2>
-<p class="slic-page-subtitle">Manage admin and sales user accounts (AppUsers table)</p>
-
-@if (!string.IsNullOrEmpty(Model.Message))
-{
-    <div class="alert alert-@(Model.IsSuccess ? "success" : "danger") alert-slic alert-dismissible fade show">
-        @Model.Message
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-}
+@if (!string.IsNullOrEmpty(Model.Message)) { <div class="alert alert-@(Model.IsSuccess ? "success" : "danger") alert-slic">@Model.Message</div> }
 
 <div class="row g-4">
     <div class="col-lg-4">
         <div class="slic-card">
-            <div class="slic-card-header">Add New User</div>
+            <div class="slic-card-header">Add Sales Representative</div>
             <div class="slic-card-body">
                 <form method="post">
-                    <div class="mb-3">
-                        <label class="form-label">Username *</label>
-                        <input type="text" name="username" class="form-control" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Password *</label>
-                        <input type="password" name="password" class="form-control" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Role</label>
-                        <select name="role" class="form-select">
-                            <option value="Admin">Admin</option>
-                            <option value="User">Sales User</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-slic-gold w-100 justify-content-center">Create User <span class="btn-arrow-icon">→</span></button>
+                    <div class="mb-2"><label class="form-label">Name *</label><input name="name" class="form-control" required /></div>
+                    <div class="mb-2"><label class="form-label">Email</label><input name="email" type="email" class="form-control" /></div>
+                    <div class="mb-2"><label class="form-label">Username *</label><input name="username" class="form-control" required /></div>
+                    <div class="mb-2"><label class="form-label">Password *</label><input name="password" type="password" class="form-control" required /></div>
+                    <div class="mb-2"><label class="form-label">Role</label><select name="role" class="form-select"><option>Sales</option><option>Admin</option></select></div>
+                    <div class="mb-3"><label class="form-label">Status</label><select name="status" class="form-select"><option>Active</option><option>Inactive</option></select></div>
+                    <button type="submit" class="btn-slic-gold w-100 justify-content-center">Add User <span class="btn-arrow-icon">→</span></button>
                 </form>
             </div>
         </div>
     </div>
     <div class="col-lg-8">
         <div class="slic-card">
-            <div class="slic-card-header">Application Users</div>
+            <div class="slic-card-header">All Users</div>
             <div class="slic-card-body p-0">
-                <div class="table-responsive">
-                    <table class="table slic-table mb-0">
-                        <thead>
+                <table class="table slic-table mb-0">
+                    <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Username</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead>
+                    <tbody>
+                        @foreach (var u in Model.Users)
+                        {
                             <tr>
-                                <th>Username</th>
-                                <th>Role</th>
-                                <th></th>
+                                <td>@u.Id</td><td>@u.Name</td><td>@u.Email</td><td>@u.Username</td>
+                                <td>@u.Role</td><td>@u.Status</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#edit-@u.Id">Edit</button>
+                                    <button class="btn btn-sm btn-outline-warning" data-bs-toggle="collapse" data-bs-target="#pwd-@u.Id">Reset Pwd</button>
+                                    <form method="post" asp-page-handler="Delete" class="d-inline"><input type="hidden" name="id" value="@u.Id" />
+                                        <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete?')">Delete</button></form>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var user in Model.Users)
-                            {
-                                <tr>
-                                    <td><strong>@user.Username</strong></td>
-                                    <td><span class="badge bg-secondary">@user.Role</span></td>
-                                    <td>
-                                        <form method="post" asp-page-handler="Delete" class="d-inline">
-                                            <input type="hidden" name="id" value="@user.UserID" />
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this user?')">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                            <tr class="collapse" id="edit-@u.Id">
+                                <td colspan="7">
+                                    <form method="post" asp-page-handler="Edit" class="row g-2 p-2">
+                                        <input type="hidden" name="id" value="@u.Id" />
+                                        <div class="col-md-3"><input name="name" class="form-control form-control-sm" value="@u.Name" /></div>
+                                        <div class="col-md-3"><input name="email" class="form-control form-control-sm" value="@u.Email" /></div>
+                                        <div class="col-md-2"><select name="role" class="form-select form-select-sm"><option>Sales</option><option>Admin</option></select></div>
+                                        <div class="col-md-2"><select name="status" class="form-select form-select-sm"><option>Active</option><option>Inactive</option></select></div>
+                                        <div class="col-md-2"><button class="btn btn-sm btn-success w-100">Save</button></div>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr class="collapse" id="pwd-@u.Id">
+                                <td colspan="7">
+                                    <form method="post" asp-page-handler="ResetPassword" class="d-flex gap-2 p-2">
+                                        <input type="hidden" name="id" value="@u.Id" />
+                                        <input name="newPassword" type="password" class="form-control form-control-sm" placeholder="New password" required />
+                                        <button class="btn btn-sm btn-warning">Reset</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

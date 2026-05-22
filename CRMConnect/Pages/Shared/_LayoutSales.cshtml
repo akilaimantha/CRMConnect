@@ -1,29 +1,29 @@
 @{
-    var title = ViewData["Title"]?.ToString() ?? "Admin Panel";
+    var title = ViewData["Title"]?.ToString() ?? "Sales Panel";
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@title - CRMConnect Admin</title>
+    <title>@title - CRMConnect Sales</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/slic-theme.css" asp-append-version="true" />
 </head>
-<body class="slic-body" data-portal="admin">
+<body class="slic-body" data-portal="sales">
 <div class="app-shell">
     <aside class="sidebar">
-        <a class="sidebar-brand" href="/Admin">
+        <a class="sidebar-brand" href="/Sales">
             <img src="~/images/slic-logo.svg" alt="SLIC" />
-            <span>CRMConnect<br /><small style="opacity:0.8;font-weight:400">Admin Panel</small></span>
+            <span>CRMConnect<br /><small style="opacity:0.8;font-weight:400">Sales Panel</small></span>
         </a>
-        <div class="sidebar-role">Administrator</div>
+        <div class="sidebar-role">Sales Representative</div>
         <nav class="sidebar-nav">
-            <a href="/Admin" class="@(title == "Admin Dashboard" ? "active" : "")"><span>📊</span> <span>Dashboard</span></a>
-            <a href="/Admin/Users" class="@(title.Contains("User") ? "active" : "")"><span>👤</span> <span>User Management</span></a>
-            <a href="/Admin/Customers" class="@(title.Contains("Customer") ? "active" : "")"><span>👥</span> <span>Customer Monitoring</span></a>
-            <a href="/Admin/Reports" class="@(title.Contains("Report") ? "active" : "")"><span>📈</span> <span>Reports</span></a>
-            <a href="/Admin/Settings" class="@(title.Contains("Setting") ? "active" : "")"><span>⚙️</span> <span>System Settings</span></a>
+            <a href="/Sales" class="@(title == "Dashboard" ? "active" : "")"><span>📊</span> <span>Dashboard</span></a>
+            <a href="/Sales/Customers" class="@(title.Contains("Customer") ? "active" : "")"><span>👥</span> <span>Customers</span></a>
+            <a href="/Sales/SalesActivities" class="@(title.Contains("Sales") ? "active" : "")"><span>💰</span> <span>Sales Activities</span></a>
+            <a href="/Sales/Tasks" class="@(title.Contains("Task") ? "active" : "")"><span>✅</span> <span>Tasks</span></a>
+            <a href="/Sales/Communication" class="@(title.Contains("Communication") ? "active" : "")"><span>💬</span> <span>Communication</span></a>
         </nav>
         <div class="sidebar-footer">
             <a href="/Logout" class="btn btn-sm btn-slic-gold w-100 justify-content-center">Logout</a>

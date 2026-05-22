@@ -1,0 +1,66 @@
+@page
+@model CRMConnect.Pages.Sales.SalesActivitiesModel
+@{
+    ViewData["Title"] = "Sales Activities";
+}
+
+@if (!string.IsNullOrEmpty(Model.Message)) { <div class="alert alert-@(Model.IsSuccess ? "success" : "danger") alert-slic">@Model.Message</div> }
+
+<div class="slic-card mb-4">
+    <div class="slic-card-header gold">Log Sales Activity</div>
+    <div class="slic-card-body">
+        <form method="post" class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Customer *</label>
+                <select name="customerId" class="form-select" required>
+                    <option value="">-- Select --</option>
+                    @foreach (var c in Model.Customers) { <option value="@c.Id">@c.Name</option> }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Lead Status</label>
+                <select name="leadStatus" class="form-select">
+                    <option>New Lead</option><option>Contacted</option><option>Negotiation</option>
+                    <option>Closed</option><option>Rejected</option>
+                </select>
+            </div>
+            <div class="col-md-4"><label class="form-label">Notes</label><input name="notes" class="form-control" /></div>
+            <div class="col-12"><button type="submit" class="btn-slic-gold">Log Activity <span class="btn-arrow-icon">→</span></button></div>
+        </form>
+    </div>
+</div>
+
+<div class="slic-card">
+    <div class="slic-card-header">Sales History</div>
+    <div class="slic-card-body p-0">
+        <table class="table slic-table mb-0">
+            <thead><tr><th>Customer</th><th>Status</th><th>Date</th><th>Notes</th><th>Update</th><th></th></tr></thead>
+            <tbody>
+                @foreach (var a in Model.Activities)
+                {
+                    <tr>
+                        <td>@a.Customer</td>
+                        <td><span class="badge-warm">@a.Status</span></td>
+                        <td>@a.Date.ToString("dd MMM yyyy")</td>
+                        <td>@a.Notes</td>
+                        <td>
+                            <form method="post" asp-page-handler="UpdateStatus" class="d-flex gap-1">
+                                <input type="hidden" name="id" value="@a.Id" />
+                                <select name="leadStatus" class="form-select form-select-sm" style="width:120px">
+                                    <option>New Lead</option><option>Contacted</option><option>Negotiation</option>
+                                    <option>Closed</option><option>Rejected</option>
+                                </select>
+                                <button class="btn btn-sm btn-slic-teal text-white">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" asp-page-handler="Delete"><input type="hidden" name="id" value="@a.Id" />
+                                <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

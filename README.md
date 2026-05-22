@@ -1,114 +1,87 @@
-# CRMConnect
+# CRMConnect – Customer Relationship Management System
 
-**Customer Relationship Management System** for a sales organization — built with **ASP.NET Core 8**, **Oracle Database**, **HTML**, **CSS**, and **JavaScript**.
+Web-based CRM for a sales organization built with **ASP.NET Core 8**, **Oracle Database**, **HTML**, **CSS**, and **JavaScript**. Branded for **Sri Lanka Insurance (SLIC)**.
 
-Branded for **Sri Lanka Insurance Corporation (SLIC)** with separate **Admin** and **Customer** portals.
+## User Roles
 
-![SLIC Theme](CRMConnect/wwwroot/images/slic-logo.svg)
+| Role | Panel | Login |
+|------|-------|-------|
+| **System Administrator** | Admin Panel | `admin` / `admin123` |
+| **Sales Representative** | Sales Panel | `sales1` / `sales123` |
 
-## Features
-
-| Module | Description |
-|--------|-------------|
-| **Customer Profiles** | CRUD for customer records with policy types |
-| **Sales Tracking** | Log leads, pipeline stages, conversion metrics |
-| **Task Management** | Assign tasks to sales reps with due dates |
-| **Communication Log** | Phone, email, meeting, and note history |
-| **Admin Panel** | User management and system settings |
-| **Customer Portal** | Profile, policies, messages, support requests |
-| **Notifications** | AJAX alerts for tasks due within 3 days |
-
-## Technology Stack
-
-- ASP.NET Core 8 Razor Pages Web Application
-- Oracle Database (Oracle.ManagedDataAccess.Core)
-- Bootstrap 5 + custom SLIC theme CSS
-- jQuery for client-side validation and notifications
-
-## Quick Start
-
-### 1. Oracle Database Setup
-
-1. Install Oracle Database (XE or higher).
-2. Open and run **`Database/CRMConnect_Schema.sql`** in Oracle SQL Developer (press F5).
-
-### 2. Connection String
-
-Edit `CRMConnect/appsettings.json`:
-
-```json
-"ConnectionStrings": {
-  "OracleDB": "User Id=system;Password=YOUR_PASSWORD;Data Source=localhost:1521/XE;"
-}
-```
-
-### 3. Run the Application
-
-```bash
-cd CRMConnect
-dotnet run
-```
-
-Open **https://localhost:7xxx** (see console for port).
-
-## Demo Login Credentials
-
-| Portal | Credentials |
-|--------|-------------|
-| **Admin** | `admin` / `admin123` |
-| **Sales User** | `salesuser` / `sales123` |
-| **Customer** | `contact@abc.com` / `customer123` (also `info@xyz.com`, `sales@techsolutions.com`) |
-
-## Portal Structure
-
-### Admin Portal (after admin login)
-
-- `/Admin` — Dashboard with statistics
-- `/Customers` — Customer CRUD
-- `/Sales` — Sales activities & pipeline
-- `/Tasks` — Task management
-- `/Communication` — Communication log
-- `/Admin/Users` — User management
-- `/Admin/Settings` — System settings
-
-### Customer Portal (after customer login)
-
-- `/Portal` — Customer dashboard
-- `/Portal/Profile` — View profile
-- `/Portal/Communications` — Message history
-- `/Portal/Policies` — Insurance policies
-- `/Portal/Support` — Submit support requests
-
-## Database Tables
-
-- `Customers` — Customer profiles with portal login
-- `SalesActivities` — Sales and lead tracking
-- `Tasks` — Task assignments
-- `CommunicationLog` — Customer communications
-- `AppUsers` — Admin and sales users
-- `Settings` — Application configuration
-
-## Assignment Alignment
-
-This project fulfills the CRMConnect case study requirements:
-
-1. **Backend** — ASP.NET Web Application with Oracle CRUD operations
-2. **Frontend** — HTML structure via Razor Pages, SLIC-themed CSS, JavaScript validation & notifications
-3. **Integration** — Frontend connected to backend; task notification API at `/api/notifications`
-4. **Dual interfaces** — Admin side for sales organization; Customer side for policyholders
-
-## Project Structure
+## Folder Structure
 
 ```
 CRMConnect/
-├── CRMConnect/           # ASP.NET Core web project
-│   ├── Pages/            # Razor Pages (Admin + Portal + Features)
-│   ├── Models/           # Database helper, session auth
-│   └── wwwroot/          # CSS, JS, SLIC logo
+├── CRMConnect/
+│   ├── Models/
+│   │   ├── DatabaseHelper.cs      # Oracle connectivity
+│   │   ├── SessionAuth.cs         # Session & roles
+│   │   └── AuthorizeAttributes.cs # Admin / Sales guards
+│   ├── Pages/
+│   │   ├── Index.cshtml           # Login
+│   │   ├── Logout.cshtml
+│   │   ├── Sales/                 # Sales Representative Panel
+│   │   │   ├── Index.cshtml       # Dashboard
+│   │   │   ├── Customers.cshtml   # CRUD + Search
+│   │   │   ├── Customers/Edit.cshtml
+│   │   │   ├── SalesActivities.cshtml
+│   │   │   ├── Tasks.cshtml
+│   │   │   └── Communication.cshtml
+│   │   ├── Admin/                 # Administrator Panel
+│   │   │   ├── Index.cshtml       # Dashboard
+│   │   │   ├── Users.cshtml
+│   │   │   ├── Customers.cshtml
+│   │   │   ├── Reports.cshtml
+│   │   │   └── Settings.cshtml
+│   │   └── Shared/
+│   │       ├── _LayoutSales.cshtml   # Sidebar – Sales
+│   │       └── _LayoutAdmin.cshtml   # Sidebar – Admin
+│   ├── wwwroot/
+│   │   ├── css/slic-theme.css
+│   │   ├── js/crm.js
+│   │   └── images/slic-logo.svg
+│   └── Program.cs
 └── Database/
-    └── CRMConnect_Schema.sql  # Full Oracle worksheet (run in SQL Developer)
+    └── CRMConnect_Schema.sql
 ```
 
-## License
+## Database Tables
 
-Educational assignment project.
+1. **Users** – Admin & Sales accounts  
+2. **Customers** – Customer profiles (Company, Status)  
+3. **SalesActivities** – Lead tracking  
+4. **Tasks** – TaskName, Deadline, Status  
+5. **CommunicationLog** – Calls, emails, meetings  
+6. **Settings** – System configuration  
+
+## Setup
+
+1. Run `Database/CRMConnect_Schema.sql` in Oracle SQL Developer (F5).
+2. Set connection string in `CRMConnect/appsettings.json`.
+3. Run: `cd CRMConnect` → `dotnet run`.
+
+## Features by Panel
+
+### Sales Representative
+- Dashboard (customers, tasks, sales, communications)
+- Customer CRUD + search + edit
+- Sales activities (New Lead → Closed/Rejected)
+- Task management (complete, update status)
+- Communication log
+
+### Administrator
+- Dashboard (users, customers, sales, active users)
+- User management (add, edit, delete, reset password)
+- Customer monitoring (view all, remove records)
+- Reports (sales, customers, users, tasks)
+- System settings (notifications, backup flag)
+
+## Technology
+
+- ASP.NET Core Razor Pages + C#
+- Oracle.ManagedDataAccess.Core
+- Bootstrap 5 + SLIC theme (teal & gold)
+- Sidebar navigation layout
+- Session authentication & role-based routing
+- AJAX task notifications (`/api/notifications`)

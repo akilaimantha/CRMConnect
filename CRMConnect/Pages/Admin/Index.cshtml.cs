@@ -7,52 +7,22 @@ namespace CRMConnect.Pages.Admin;
 [AdminAuthorize]
 public class DashboardModel : PageModel
 {
+    public int TotalUsers { get; set; }
     public int TotalCustomers { get; set; }
-    public int PendingTasks { get; set; }
     public int TotalSales { get; set; }
-    public List<DashboardTaskItem> RecentTasks { get; set; } = new();
+    public int ActiveUsers { get; set; }
 
     public void OnGet()
     {
         try
         {
-            var dt = DatabaseHelper.ExecuteQuery("SELECT COUNT(*) FROM Customers");
-            TotalCustomers = Convert.ToInt32(dt.Rows[0][0]);
-
-            dt = DatabaseHelper.ExecuteQuery("SELECT COUNT(*) FROM Tasks WHERE Status = 'Pending'");
-            PendingTasks = Convert.ToInt32(dt.Rows[0][0]);
-
-            dt = DatabaseHelper.ExecuteQuery("SELECT COUNT(*) FROM SalesActivities");
-            TotalSales = Convert.ToInt32(dt.Rows[0][0]);
-
-            const string query = @"SELECT TaskDescription, AssignedTo, DueDate, Status 
-                            FROM Tasks 
-                            WHERE ROWNUM <= 5 
-                            ORDER BY DueDate ASC";
-            dt = DatabaseHelper.ExecuteQuery(query);
-
-            foreach (DataRow row in dt.Rows)
-            {
-                RecentTasks.Add(new DashboardTaskItem
-                {
-                    TaskDescription = row["TaskDescription"]?.ToString() ?? "",
-                    AssignedTo = row["AssignedTo"]?.ToString() ?? "",
-                    DueDate = row["DueDate"] as DateTime?,
-                    Status = row["Status"]?.ToString() ?? ""
-                });
-            }
+            TotalUsers = Count("SELECT COUNT(*) FROM Users");
+            TotalCustomers = Count("SELECT COUNT(*) FROM Customers");
+            TotalSales = Count("SELECT COUNT(*) FROM SalesActivities");
+            ActiveUsers = Count("SELECT COUNT(*) FROM Users WHERE Status = 'Active'");
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Dashboard error: {ex.Message}");
-        }
+        catch { }
     }
-}
 
-public class DashboardTaskItem
-{
-    public string TaskDescription { get; set; } = "";
-    public string AssignedTo { get; set; } = "";
-    public DateTime? DueDate { get; set; }
-    public string Status { get; set; } = "";
+    private int Count(string sql) => Convert.ToInt32(DatabaseHelper.ExecuteQuery(sql).Rows[0][0]);
 }

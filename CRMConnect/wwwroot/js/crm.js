@@ -55,7 +55,7 @@ function setActiveNav() {
 
 document.addEventListener('DOMContentLoaded', function () {
     setActiveNav();
-    if (document.body.dataset.portal === 'admin') {
+    if (document.body.dataset.portal === 'admin' || document.body.dataset.portal === 'sales') {
         checkDueTasks();
         setInterval(checkDueTasks, 300000);
     }

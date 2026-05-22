@@ -1,0 +1,71 @@
+@page
+@model CRMConnect.Pages.Sales.DashboardModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row g-3 mb-4">
+    <div class="col-md-6 col-lg-3">
+        <div class="slic-stat-card"><div class="slic-stat-number">@Model.TotalCustomers</div><div class="slic-stat-label">Total Customers</div></div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="slic-stat-card gold"><div class="slic-stat-number">@Model.PendingTasks</div><div class="slic-stat-label">Pending Tasks</div></div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="slic-stat-card"><div class="slic-stat-number">@Model.RecentSales.Count</div><div class="slic-stat-label">Recent Sales (shown)</div></div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+        <div class="slic-stat-card dark"><div class="slic-stat-number">@Model.RecentComms.Count</div><div class="slic-stat-label">Recent Comms (shown)</div></div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="slic-card">
+            <div class="slic-card-header">Recent Sales Activities</div>
+            <div class="slic-card-body p-0">
+                <table class="table slic-table mb-0 table-sm">
+                    <thead><tr><th>Customer</th><th>Status</th><th>Date</th></tr></thead>
+                    <tbody>
+                        @foreach (var s in Model.RecentSales) {
+                            <tr><td>@s.Customer</td><td><span class="badge-warm">@s.Status</span></td><td>@s.Date.ToString("dd MMM yyyy")</td></tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="slic-card">
+            <div class="slic-card-header gold">Recent Communication</div>
+            <div class="slic-card-body">
+                @foreach (var c in Model.RecentComms) {
+                    <div class="activity-item mb-2">
+                        <strong>@c.Customer</strong> · <span class="comm-type comm-type-phone">@c.Type</span>
+                        <div class="small text-muted">@c.Date.ToString("dd MMM yyyy")</div>
+                        <div class="small">@c.Notes</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="slic-card">
+            <div class="slic-card-header">Tasks Due Soon</div>
+            <div class="slic-card-body p-0">
+                <table class="table slic-table mb-0">
+                    <thead><tr><th>Task</th><th>Assigned</th><th>Deadline</th><th>Status</th></tr></thead>
+                    <tbody>
+                        @foreach (var t in Model.RecentTasks) {
+                            <tr>
+                                <td>@t.Name</td><td>@t.Assigned</td>
+                                <td>@t.Due?.ToString("yyyy-MM-dd")</td>
+                                <td>@(t.Status == "Pending" ? Html.Raw("<span class='badge-slic-pending'>Pending</span>") : Html.Raw("<span class='badge-slic-done'>Done</span>"))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

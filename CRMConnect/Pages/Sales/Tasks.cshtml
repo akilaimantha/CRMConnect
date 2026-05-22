@@ -1,0 +1,54 @@
+@page
+@model CRMConnect.Pages.Sales.TasksModel
+@{
+    ViewData["Title"] = "Task Management";
+}
+
+@if (!string.IsNullOrEmpty(Model.Message)) { <div class="alert alert-@(Model.IsSuccess ? "success" : "danger") alert-slic">@Model.Message</div> }
+
+<div class="slic-card mb-4">
+    <div class="slic-card-header">Create Task</div>
+    <div class="slic-card-body">
+        <form method="post" class="row g-3">
+            <div class="col-md-5"><label class="form-label">Task Name *</label><input name="taskName" class="form-control" required /></div>
+            <div class="col-md-3"><label class="form-label">Deadline</label><input type="date" name="deadline" class="form-control" /></div>
+            <div class="col-md-4">
+                <label class="form-label">Customer</label>
+                <select name="customerId" class="form-select"><option value="">-- Optional --</option>
+                    @foreach (var c in Model.Customers) { <option value="@c.Id">@c.Name</option> }
+                </select>
+            </div>
+            <div class="col-12"><button type="submit" class="btn-slic-gold">Create <span class="btn-arrow-icon">→</span></button></div>
+        </form>
+    </div>
+</div>
+
+<div class="slic-card">
+    <div class="slic-card-header">Assigned Tasks</div>
+    <div class="slic-card-body p-0">
+        <table class="table slic-table mb-0">
+            <thead><tr><th>Task</th><th>Customer</th><th>Assigned</th><th>Deadline</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+                @foreach (var t in Model.Tasks)
+                {
+                    <tr>
+                        <td>@t.Name</td><td>@t.Customer</td><td>@t.Assigned</td>
+                        <td>@t.Deadline?.ToString("yyyy-MM-dd")</td>
+                        <td>@(t.Status == "Pending" ? Html.Raw("<span class='badge-slic-pending'>Pending</span>") : Html.Raw("<span class='badge-slic-done'>Completed</span>"))</td>
+                        <td>
+                            @if (t.Status == "Pending") {
+                                <form method="post" asp-page-handler="Complete" class="d-inline"><input type="hidden" name="id" value="@t.Id" />
+                                    <button class="btn btn-sm btn-success">Complete</button></form>
+                            }
+                            <form method="post" asp-page-handler="UpdateStatus" class="d-inline">
+                                <input type="hidden" name="id" value="@t.Id" />
+                                <select name="status" class="form-select form-select-sm d-inline-block" style="width:100px"><option>Pending</option><option>Completed</option></select>
+                                <button class="btn btn-sm btn-outline-secondary">Set</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+@page
+@model CRMConnect.Pages.Sales.CustomerEditModel
+@{
+    ViewData["Title"] = "Edit Customer";
+    Layout = "_LayoutSales";
+}
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-@(Model.IsSuccess ? "success" : "danger") alert-slic">@Model.Message</div>
+}
+
+<div class="slic-card" style="max-width:600px">
+    <div class="slic-card-header">Edit Customer #@Model.Customer.Id</div>
+    <div class="slic-card-body">
+        <form method="post">
+            <input type="hidden" name="id" value="@Model.Customer.Id" />
+            <div class="mb-2"><label class="form-label">Name *</label><input name="name" class="form-control" value="@Model.Customer.Name" required /></div>
+            <div class="mb-2"><label class="form-label">Email</label><input name="email" class="form-control" value="@Model.Customer.Email" /></div>
+            <div class="mb-2"><label class="form-label">Phone</label><input name="phone" class="form-control" value="@Model.Customer.Phone" /></div>
+            <div class="mb-2"><label class="form-label">Company</label><input name="company" class="form-control" value="@Model.Customer.Company" /></div>
+            <div class="mb-2"><label class="form-label">Address</label><textarea name="address" class="form-control" rows="2">@Model.Customer.Address</textarea></div>
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <select name="status" class="form-select">
+                    <option selected="@(Model.Customer.Status == "Active")">Active</option>
+                    <option selected="@(Model.Customer.Status == "Inactive")">Inactive</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-slic-gold">Save <span class="btn-arrow-icon">→</span></button>
+            <a href="/Sales/Customers" class="btn btn-outline-secondary ms-2">Back</a>
+        </form>
+    </div>
+</div>

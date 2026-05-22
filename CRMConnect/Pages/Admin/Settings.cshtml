@@ -4,53 +4,41 @@
     ViewData["Title"] = "System Settings";
 }
 
-<h2 class="slic-page-title">System Settings</h2>
-<p class="slic-page-subtitle">Configure organization and notification preferences (Settings table)</p>
-
-@if (!string.IsNullOrEmpty(Model.Message))
-{
-    <div class="alert alert-@(Model.IsSuccess ? "success" : "danger") alert-slic alert-dismissible fade show">
-        @Model.Message
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-}
+@if (!string.IsNullOrEmpty(Model.Message)) { <div class="alert alert-@(Model.IsSuccess ? "success" : "danger") alert-slic">@Model.Message</div> }
 
 <div class="row g-4">
     <div class="col-lg-6">
         <div class="slic-card">
-            <div class="slic-card-header">Application Settings</div>
+            <div class="slic-card-header">System Settings</div>
             <div class="slic-card-body">
                 <form method="post">
-                    @foreach (var setting in Model.Settings)
+                    @foreach (var s in Model.Settings)
                     {
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">@setting.SettingName</label>
-                            <input type="hidden" name="ids" value="@setting.SettingID" />
-                            <input type="hidden" name="names" value="@setting.SettingName" />
-                            <input type="text" name="values" class="form-control" value="@setting.SettingValue" />
+                            <label class="form-label fw-semibold">@s.Name</label>
+                            <input type="hidden" name="ids" value="@s.Id" />
+                            <input type="text" name="values" class="form-control" value="@s.Value" />
                         </div>
                     }
                     <button type="submit" class="btn-slic-gold">Save Settings <span class="btn-arrow-icon">→</span></button>
                 </form>
             </div>
         </div>
+        <div class="slic-card mt-4">
+            <div class="slic-card-header gold">Notification Settings</div>
+            <div class="slic-card-body small text-muted">
+                <p>Task due-date alerts are sent via JavaScript when pending tasks are due within the configured <strong>NotificationDays</strong> window.</p>
+                <p class="mb-0">Email notifications can be enabled via the <strong>EmailNotifications</strong> setting.</p>
+            </div>
+        </div>
     </div>
     <div class="col-lg-6">
         <div class="slic-card">
-            <div class="slic-card-header gold">Database Connection</div>
+            <div class="slic-card-header">Database Backup</div>
             <div class="slic-card-body">
-                <p class="small text-muted">Connection string is configured in <code>appsettings.json</code></p>
-                <div class="p-3 rounded" style="background: var(--slic-bg); font-family: monospace; font-size: 0.8rem; word-break: break-all;">
-                    @Model.ConnectionDisplay
-                </div>
-                <hr />
-                <h6 class="fw-bold" style="color: var(--slic-teal);">Technology Stack</h6>
-                <ul class="list-unstyled small">
-                    <li>ASP.NET Core 8 Web Application</li>
-                    <li>Oracle Database (Managed Data Access)</li>
-                    <li>HTML, CSS, JavaScript</li>
-                    <li>Tables: Customers, SalesActivities, Tasks, CommunicationLog, AppUsers, Settings</li>
-                </ul>
+                <p class="small text-muted">Backup option is configured via <strong>BackupEnabled</strong> in settings. Use Oracle RMAN or export tools for production backups.</p>
+                <div class="p-3 rounded mb-3" style="background:var(--slic-bg); font-family:monospace; font-size:0.8rem; word-break:break-all;">@Model.ConnectionDisplay</div>
+                <p class="small mb-0"><strong>Tables:</strong> Users, Customers, SalesActivities, Tasks, CommunicationLog, Settings</p>
             </div>
         </div>
     </div>

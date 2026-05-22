@@ -3,46 +3,35 @@ namespace CRMConnect.Models;
 public static class SessionAuth
 {
     public const string RoleKey = "Role";
-    public const string UserNameKey = "UserName";
+    public const string UserIdKey = "UserId";
+    public const string UserNameKey = "Username";
     public const string DisplayNameKey = "DisplayName";
-    public const string CustomerIdKey = "CustomerId";
 
     public static bool IsLoggedIn(HttpContext context) =>
         !string.IsNullOrEmpty(context.Session.GetString(RoleKey));
 
-    public static bool IsAdmin(HttpContext context)
-    {
-        var role = context.Session.GetString(RoleKey);
-        return role == "Admin" || role == "User" || role == "SalesRep";
-    }
+    public static bool IsAdmin(HttpContext context) =>
+        context.Session.GetString(RoleKey) == "Admin";
 
-    public static bool IsCustomer(HttpContext context) =>
-        context.Session.GetString(RoleKey) == "Customer";
+    public static bool IsSales(HttpContext context) =>
+        context.Session.GetString(RoleKey) == "Sales";
 
-    public static void SetAdminSession(HttpContext context, string username, string displayName, string role)
+    public static void SetUserSession(HttpContext context, int userId, string username, string displayName, string role)
     {
-        context.Session.SetString(RoleKey, role);
+        context.Session.SetString(UserIdKey, userId.ToString());
         context.Session.SetString(UserNameKey, username);
         context.Session.SetString(DisplayNameKey, displayName);
-        context.Session.Remove(CustomerIdKey);
+        context.Session.SetString(RoleKey, role);
     }
 
-    public static void SetCustomerSession(HttpContext context, int customerId, string name, string email)
+    public static void Clear(HttpContext context) => context.Session.Clear();
+
+    public static int? GetUserId(HttpContext context)
     {
-        context.Session.SetString(RoleKey, "Customer");
-        context.Session.SetString(CustomerIdKey, customerId.ToString());
-        context.Session.SetString(DisplayNameKey, name);
-        context.Session.SetString(UserNameKey, email);
+        var id = context.Session.GetString(UserIdKey);
+        return int.TryParse(id, out var uid) ? uid : null;
     }
 
-    public static void Clear(HttpContext context)
-    {
-        context.Session.Clear();
-    }
-
-    public static int? GetCustomerId(HttpContext context)
-    {
-        var id = context.Session.GetString(CustomerIdKey);
-        return int.TryParse(id, out var cid) ? cid : null;
-    }
+    public static string GetDisplayName(HttpContext context) =>
+        context.Session.GetString(DisplayNameKey) ?? "User";
 }

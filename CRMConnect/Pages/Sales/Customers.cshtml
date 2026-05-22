@@ -1,0 +1,64 @@
+@page
+@model CRMConnect.Pages.Sales.CustomersModel
+@{
+    ViewData["Title"] = "Customer Management";
+}
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-@(Model.IsSuccess ? "success" : "danger") alert-slic">@Model.Message</div>
+}
+
+<div class="row g-4">
+    <div class="col-lg-4">
+        <div class="slic-card">
+            <div class="slic-card-header">Add Customer</div>
+            <div class="slic-card-body">
+                <form method="post">
+                    <div class="mb-2"><label class="form-label">Name *</label><input name="name" class="form-control" required /></div>
+                    <div class="mb-2"><label class="form-label">Email</label><input name="email" type="email" class="form-control" /></div>
+                    <div class="mb-2"><label class="form-label">Phone</label><input name="phone" class="form-control" /></div>
+                    <div class="mb-2"><label class="form-label">Company</label><input name="company" class="form-control" /></div>
+                    <div class="mb-2"><label class="form-label">Address</label><textarea name="address" class="form-control" rows="2"></textarea></div>
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select name="status" class="form-select"><option>Active</option><option>Inactive</option></select>
+                    </div>
+                    <button type="submit" class="btn-slic-gold w-100 justify-content-center">Add <span class="btn-arrow-icon">→</span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="slic-card">
+            <div class="slic-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <span>Customer List</span>
+                <form method="get" class="d-flex gap-2">
+                    <input name="search" class="form-control form-control-sm" placeholder="Search..." value="@Model.Search" style="min-width:180px" />
+                    <button type="submit" class="btn btn-sm btn-slic-teal text-white">Search</button>
+                </form>
+            </div>
+            <div class="slic-card-body p-0">
+                <table class="table slic-table mb-0">
+                    <thead><tr><th>ID</th><th>Name</th><th>Company</th><th>Email</th><th>Status</th><th></th></tr></thead>
+                    <tbody>
+                        @foreach (var c in Model.Customers)
+                        {
+                            <tr>
+                                <td>@c.Id</td><td><strong>@c.Name</strong></td><td>@c.Company</td><td>@c.Email</td>
+                                <td>@(c.Status == "Active" ? Html.Raw("<span class='badge-slic-done'>Active</span>") : Html.Raw("<span class='badge-slic-pending'>Inactive</span>"))</td>
+                                <td>
+                                    <a href="/Sales/Customers/Edit?id=@c.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                                    <form method="post" asp-page-handler="Delete" class="d-inline">
+                                        <input type="hidden" name="id" value="@c.Id" />
+                                        <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

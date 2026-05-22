@@ -11,73 +11,44 @@ public class IndexModel : PageModel
 
     public IActionResult OnGet()
     {
-        if (SessionAuth.IsAdmin(HttpContext))
-            return RedirectToPage("/Admin/Index");
-        if (SessionAuth.IsCustomer(HttpContext))
-            return RedirectToPage("/Portal/Index");
+        if (SessionAuth.IsAdmin(HttpContext)) return RedirectToPage("/Admin/Index");
+        if (SessionAuth.IsSales(HttpContext)) return RedirectToPage("/Sales/Index");
         return Page();
     }
 
-    public IActionResult OnPostAdminLogin(string username, string password)
+    public IActionResult OnPost(string username, string password)
     {
         try
         {
-            var query = @"SELECT UserID, Username, Role FROM AppUsers 
-                         WHERE Username = :Username AND Password = :Password";
-            var dt = DatabaseHelper.ExecuteQuery(query, new[]
-            {
-                new OracleParameter("Username", username),
-                new OracleParameter("Password", password)
-            });
+            var dt = DatabaseHelper.ExecuteQuery(
+                @"SELECT UserID, Username, Name, Role, Status FROM Users 
+                  WHERE Username = :u AND Password = :p AND Status = 'Active'",
+                new[] {
+                    new OracleParameter("u", username),
+                    new OracleParameter("p", password)
+                });
 
             if (dt.Rows.Count == 0)
             {
-                ErrorMessage = "Invalid admin credentials. Try admin / admin123";
+                ErrorMessage = "Invalid username or password.";
                 return Page();
             }
 
             var row = dt.Rows[0];
-            var role = row["Role"]?.ToString() ?? "Admin";
-            var uname = row["Username"]?.ToString() ?? username;
-            SessionAuth.SetAdminSession(HttpContext, uname, uname, role);
-            return RedirectToPage("/Admin/Index");
+            var role = row["Role"]?.ToString() ?? "";
+            SessionAuth.SetUserSession(HttpContext,
+                Convert.ToInt32(row["UserID"]),
+                row["Username"]?.ToString() ?? username,
+                row["Name"]?.ToString() ?? username,
+                role);
+
+            return role == "Admin"
+                ? RedirectToPage("/Admin/Index")
+                : RedirectToPage("/Sales/Index");
         }
         catch (Exception ex)
         {
-            ErrorMessage = $"Database connection error: {ex.Message}. Run Database/CRMConnect_Schema.sql first.";
-            return Page();
-        }
-    }
-
-    public IActionResult OnPostCustomerLogin(string email, string password)
-    {
-        try
-        {
-            var query = @"SELECT CustomerID, Name, Email FROM Customers 
-                         WHERE Email = :Email AND LoginPassword = :Password";
-            var dt = DatabaseHelper.ExecuteQuery(query, new[]
-            {
-                new OracleParameter("Email", email),
-                new OracleParameter("Password", password)
-            });
-
-            if (dt.Rows.Count == 0)
-            {
-                ErrorMessage = "Invalid customer credentials. Try contact@abc.com / customer123";
-                return Page();
-            }
-
-            var row = dt.Rows[0];
-            SessionAuth.SetCustomerSession(
-                HttpContext,
-                Convert.ToInt32(row["CustomerID"]),
-                row["Name"]?.ToString() ?? "Customer",
-                row["Email"]?.ToString() ?? email);
-            return RedirectToPage("/Portal/Index");
-        }
-        catch (Exception ex)
-        {
-            ErrorMessage = $"Database connection error: {ex.Message}. Run Database/CRMConnect_Schema.sql first.";
+            ErrorMessage = $"Database error: {ex.Message}. Run Database/CRMConnect_Schema.sql";
             return Page();
         }
     }

@@ -18,8 +18,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\USER\Documents\GitHub\CRMConnect\CRMConnect
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Admin/Customers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3VzdG9tZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Admin/Reports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmVwb3J0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Admin/Settings.cshtml]
@@ -34,14 +42,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Communication.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tbXVuaWNhdGlvbi5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Customers.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -54,52 +54,48 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Portal/Communications.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9ydGFsXENvbW11bmljYXRpb25zLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Portal/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9ydGFsXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Portal/Policies.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9ydGFsXFBvbGljaWVzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Portal/Profile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9ydGFsXFByb2ZpbGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Portal/Support.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9ydGFsXFN1cHBvcnQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Portal/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9ydGFsXF9WaWV3U3RhcnQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Sales.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZXMuY3NodG1s
+[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Sales/Communication.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZXNcQ29tbXVuaWNhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Sales/Customers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZXNcQ3VzdG9tZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Sales/Customers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZXNcQ3VzdG9tZXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Sales/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Sales/SalesActivities.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZXNcU2FsZXNBY3Rpdml0aWVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Sales/Tasks.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZXNcVGFza3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Sales/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FsZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Shared/_LayoutAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Shared/_LayoutCustomer.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRDdXN0b21lci5jc2h0bWw=
+[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Shared/_LayoutSales.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRTYWxlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/Tasks.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFza3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/USER/Documents/GitHub/CRMConnect/CRMConnect/Pages/_ViewImports.cshtml]

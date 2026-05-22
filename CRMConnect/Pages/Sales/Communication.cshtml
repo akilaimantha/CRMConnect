@@ -1,0 +1,52 @@
+@page
+@model CRMConnect.Pages.Sales.CommunicationModel
+@{
+    ViewData["Title"] = "Communication Log";
+}
+
+@if (!string.IsNullOrEmpty(Model.Message)) { <div class="alert alert-@(Model.IsSuccess ? "success" : "danger") alert-slic">@Model.Message</div> }
+
+<div class="slic-card mb-4">
+    <div class="slic-card-header">Record Communication</div>
+    <div class="slic-card-body">
+        <form method="post" class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Customer *</label>
+                <select name="customerId" class="form-select" required>
+                    <option value="">-- Select --</option>
+                    @foreach (var c in Model.Customers) { <option value="@c.Id">@c.Name</option> }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Type</label>
+                <select name="commType" class="form-select">
+                    <option>Phone Call</option><option>Email</option><option>Meeting</option><option>Note</option>
+                </select>
+            </div>
+            <div class="col-md-12"><label class="form-label">Notes *</label><textarea name="notes" class="form-control" rows="3" required></textarea></div>
+            <div class="col-12"><button type="submit" class="btn-slic-gold">Save <span class="btn-arrow-icon">→</span></button></div>
+        </form>
+    </div>
+</div>
+
+<div class="slic-card">
+    <div class="slic-card-header gold">Communication History</div>
+    <div class="slic-card-body">
+        @foreach (var l in Model.Logs)
+        {
+            <div class="activity-item">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <strong style="color:var(--slic-teal)">@l.Customer</strong>
+                        <span class="comm-type comm-type-phone ms-2">@l.Type</span>
+                        <div class="small text-muted">@l.Date.ToString("dd MMM yyyy · h:mm tt")</div>
+                        <p class="mb-0 mt-1">@l.Notes</p>
+                    </div>
+                    <form method="post" asp-page-handler="Delete"><input type="hidden" name="id" value="@l.Id" />
+                        <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete?')">Delete</button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div>

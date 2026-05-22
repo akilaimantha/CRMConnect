@@ -1,0 +1,38 @@
+@page
+@model CRMConnect.Pages.Admin.ReportsModel
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4"><div class="slic-stat-card"><div class="slic-stat-number">@Model.TotalTasks</div><div class="slic-stat-label">Total Tasks</div></div></div>
+    <div class="col-md-4"><div class="slic-stat-card gold"><div class="slic-stat-number">@Model.PendingTasks</div><div class="slic-stat-label">Pending Tasks</div></div></div>
+    <div class="col-md-4"><div class="slic-stat-card dark"><div class="slic-stat-number">@Model.TotalCommunications</div><div class="slic-stat-label">Communications</div></div></div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-4">
+        <div class="report-card">
+            <h5>Sales Report (by Status)</h5>
+            <table class="table table-sm">
+                @foreach (var r in Model.SalesByStatus) { <tr><td>@r.Label</td><td class="text-end fw-bold">@r.Count</td></tr> }
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="report-card">
+            <h5>Customer Statistics</h5>
+            <table class="table table-sm">
+                @foreach (var r in Model.CustomersByStatus) { <tr><td>@r.Label</td><td class="text-end fw-bold">@r.Count</td></tr> }
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="report-card">
+            <h5>User Activity (by Role)</h5>
+            <table class="table table-sm">
+                @foreach (var r in Model.UsersByRole) { <tr><td>@r.Label</td><td class="text-end fw-bold">@r.Count</td></tr> }
+            </table>
+        </div>
+    </div>
+</div>
