@@ -6,8 +6,8 @@ Web-based CRM for a sales organization built with **ASP.NET Core 8**, **Oracle D
 
 ## User Roles
 
-| Role | Panel | Login |
-|------|-------|-------|
+|            Role          |    Panel    |         Login        |
+|--------------------------|-------------|----------------------|
 | **System Administrator** | Admin Panel | `admin` / `admin123` |
 | **Sales Representative** | Sales Panel | `sales1` / `sales123` |
 
