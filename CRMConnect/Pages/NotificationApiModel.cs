@@ -9,7 +9,7 @@ public class NotificationApiModel : PageModel
 {
     public void OnGet()
     {
-        string query = "SELECT COUNT(*) FROM Tasks WHERE DueDate <= SYSDATE + 3 AND Status = 'Pending'";
+        string query = "SELECT COUNT(*) FROM Tasks WHERE Deadline <= SYSDATE + 3 AND Status = 'Pending'";
         DataTable dt = DatabaseHelper.ExecuteQuery(query);
         int count = Convert.ToInt32(dt.Rows[0][0]);
         

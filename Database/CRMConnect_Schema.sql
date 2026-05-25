@@ -90,13 +90,13 @@ CREATE SEQUENCE SettingSeq START WITH 4;
 
 -- Users
 INSERT INTO Users VALUES (1, 'System Administrator', 'admin@slic.lk', 'admin', 'admin123', 'Admin', 'Active');
-INSERT INTO Users VALUES (2, 'John Smith', 'john@slic.lk', 'sales1', 'sales123', 'Sales', 'Active');
-INSERT INTO Users VALUES (3, 'Sarah Johnson', 'sarah@slic.lk', 'sales2', 'sales123', 'Sales', 'Active');
+INSERT INTO Users VALUES (2, 'Akila Imantha', 'akila@slic.lk', 'sales1', 'sales123', 'Sales', 'Active');
+INSERT INTO Users VALUES (3, 'Mihisara Silva', 'mihisara@slic.lk', 'sales2', 'sales123', 'Sales', 'Active');
 
 -- Customers
-INSERT INTO Customers VALUES (1, 'ABC Corporation', 'contact@abc.com', '555-0100', 'ABC Corp', '123 Business St, New York', 'Active', SYSDATE);
-INSERT INTO Customers VALUES (2, 'XYZ Industries', 'info@xyz.com', '555-0200', 'XYZ Industries', '456 Factory Rd, Chicago', 'Active', SYSDATE);
-INSERT INTO Customers VALUES (3, 'Tech Solutions LLC', 'sales@techsolutions.com', '555-0300', 'Tech Solutions', '789 Tech Park, San Francisco', 'Active', SYSDATE);
+INSERT INTO Customers VALUES (1, 'Amal', 'amal@gmail.com', '0771234567', 'Flight Company', '123 Maharagama Colombo', 'Active', SYSDATE);
+INSERT INTO Customers VALUES (2, 'Pramod', 'pramod@gmail.com', '0772345678', 'Ship Company', '59 Matara Colombo', 'Active', SYSDATE);
+INSERT INTO Customers VALUES (3, 'Nimal', 'nimal@gmail.com', '0773456789', 'Car Company', '250 Anuradhapura Colombo', 'Active', SYSDATE);
 
 -- Sales Activities
 INSERT INTO SalesActivities VALUES (ActivitySeq.NEXTVAL, 1, SYSDATE - 5, 'New Lead', 'Initial inquiry for enterprise plan');
@@ -105,9 +105,9 @@ INSERT INTO SalesActivities VALUES (ActivitySeq.NEXTVAL, 3, SYSDATE - 1, 'Negoti
 INSERT INTO SalesActivities VALUES (ActivitySeq.NEXTVAL, 1, SYSDATE, 'Closed', 'Contract signed successfully');
 
 -- Tasks
-INSERT INTO Tasks VALUES (TaskSeq.NEXTVAL, 'Follow up with ABC Corp', 'John Smith', 1, SYSDATE + 2, 'Pending');
-INSERT INTO Tasks VALUES (TaskSeq.NEXTVAL, 'Send quote to XYZ Industries', 'Sarah Johnson', 2, SYSDATE + 5, 'Pending');
-INSERT INTO Tasks VALUES (TaskSeq.NEXTVAL, 'Schedule product demo', 'John Smith', 3, SYSDATE + 1, 'Pending');
+INSERT INTO Tasks VALUES (TaskSeq.NEXTVAL, 'Follow up with Amal', 'Akila Imantha', 1, SYSDATE + 2, 'Pending');
+INSERT INTO Tasks VALUES (TaskSeq.NEXTVAL, 'Send quote to Pramod', 'Mihisara Silva', 2, SYSDATE + 5, 'Pending');
+INSERT INTO Tasks VALUES (TaskSeq.NEXTVAL, 'Schedule product demo', 'Akila Imantha', 3, SYSDATE + 1, 'Pending');
 
 -- Communication Log
 INSERT INTO CommunicationLog VALUES (LogSeq.NEXTVAL, 1, SYSDATE - 2, 'Phone Call', 'Discussed pricing options and timeline.');

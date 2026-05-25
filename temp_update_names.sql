@@ -1,0 +1,11 @@
+UPDATE Users SET Name = 'Akila Imantha' WHERE Username = 'sales1';
+UPDATE Users SET Name = 'Mihisara Silva' WHERE Username = 'sales2';
+UPDATE Customers SET Name = 'Amal', Email = 'amal@gmail.com', Phone = '0771234567', Company = 'Flight Company', Address = '123 Maharagama Colombo' WHERE CustomerID = 1;
+UPDATE Customers SET Name = 'Pramod', Email = 'pramod@gmail.com', Phone = '0772345678', Company = 'Ship Company', Address = '59 Matara Colombo' WHERE CustomerID = 2;
+UPDATE Customers SET Name = 'Nimal', Email = 'nimal@gmail.com', Phone = '0773456789', Company = 'Car Company', Address = '250 Anuradhapura Colombo' WHERE CustomerID = 3;
+UPDATE Tasks SET AssignedTo = 'Akila Imantha' WHERE AssignedTo = 'John Smith';
+UPDATE Tasks SET AssignedTo = 'Mihisara Silva' WHERE AssignedTo = 'Sarah Johnson';
+COMMIT;
+SELECT UserID, Name, Username FROM Users ORDER BY UserID;
+SELECT CustomerID, Name, Email, Phone, Company, Address FROM Customers ORDER BY CustomerID;
+SELECT TaskID, TaskName, AssignedTo FROM Tasks ORDER BY TaskID;
